@@ -1,55 +1,41 @@
 <?php
 
 
-$dsn = 'mysql:dbname=minichat;host=127.0.0.1';
-$user = 'root';
-$password = '';
+require_once(__DIR__."/pdo.php");
 
-try {
-    $pdo = new PDO($dsn, $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Échec lors de la connexion : ' . $e->getMessage();
-}
+
+
 
 
 $insertUsersStatement = $pdo->prepare("
 INSERT INTO users
 (user)
 VALUES
-(?)
-
-");
+(?)");
 
 
 $insertUsersStatement-> execute([
 
-    $_POST["user"],
+  $_POST["users"],
+  
 
 ]);
 
-$idpatients=$pdo->LastinsertId();
 
+$user_id = $pdo->lastInsertId();
 
+$insertMessagesStatement = $pdo->prepare(
+  "INSERT INTO messages (message, created_at, user_id)
+  VALUES (?,?,?)
+");
 
-$insertMessagesStatement = $pdo->prepare("
-    INSERT INTO messages
-    (message,
-    dateHour
-    
-    )
-     VALUES
-    (?,?)
+$datetime=date('Y-m-d H:i:s');
 
-    ");
- 
-            
-    $datetime=date('Y-m-d H:i:s') ;
-         
-           $insertMessagesStatement-> execute([
-             $_POST("messages"), 
-             $datetime
-            ]);
+$insertMessagesStatement-> execute([
+  $_POST["message"], 
+  $datetime,
+  $user_id
+]);
    
 
 
@@ -59,6 +45,6 @@ $insertMessagesStatement = $pdo->prepare("
 
 
 
- header('Location: index.php?votre message a bien été edité.');
+ header('Location: /../index.php?votre message a bien été edité.');
 
 ?>

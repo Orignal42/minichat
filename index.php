@@ -1,26 +1,13 @@
 <?php
 
 
+  require_once(__DIR__."/pdo.php");
 
 
-
-
-$dsn = 'mysql:dbname=minichat;host=127.0.0.1';
-$user = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO($dsn, $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Échec lors de la connexion : ' . $e->getMessage();
-}
-
-$selectStatement=  $pdo -> prepare('SELECT users.*, messages.message, messages.dateHour FROM users JOIN messages ON messages.id=users.id ');
-$selectStatement->execute(); 
-$selectStatement;
-
-
+  $selectStatement=  $pdo->prepare('SELECT users.*, messages.message, messages.created_at FROM users JOIN messages ON messages.user_id=users.id ');
+  $selectStatement->execute(); 
+  $usersList = $selectStatement->fetchAll();
+  var_dump($usersList);
 ?>
 
 
@@ -43,31 +30,24 @@ $selectStatement;
      <?php endif ;?>  
     <section id="messages">
     
-    <?php 
-    
-           foreach ($selectStatement->fetchAll() as $user){ ?>
-               <tr>
-               <td><?= $user['dateHour']?></td>
-               <td><?= $user['user']?></td>
+  <?php   
+    foreach ( $usersList as $user){ ?>
+               <div>
+               <p><?= $user['created_at']?></p>
+               <h1><?= $user['user']?></h1>
   
-               <td><?= $user['messages']?></td>
+               <h6><?= $user['message']?></h6>
 
-           </tr>
+           </div>
 
-               
- 
-
- <?php   
-
-           }
-?>
+  <?php  } ?>
         
 
     </section>
-    <form action="./php/insert.php" method="post " >
+    <form action="./php/insert.php" method="post">
     
           <div class="send">     
-        <p><label>User :<input type="text" name="users" required placeholder="user" ></label></p>
+        <p><label>User:<input type="text" name="users" required placeholder="users"></label></p>
         <p><label> Message:<input type="text" name="message" required placeholder="messages" >   </label></p>                 
  
         <button>Envoyer message</button>
@@ -76,7 +56,3 @@ $selectStatement;
     
 </body>
 </html>
-
-
-
-
