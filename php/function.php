@@ -1,8 +1,8 @@
 <?php
-
   require_once(__DIR__."/pdo.php");
+  $user=$_POST["users"];
 
-
+setcookie("useres",$user,time()+3600,"/");
 if (empty($_POST["message"])){
     die("parametres manquants");
     
@@ -39,14 +39,16 @@ $verifpseudo=$insertStatement->fetch(PDO::FETCH_ASSOC);
 
         $insertUsersStatement = $pdo->prepare("
 INSERT INTO users
-(user)
+(user,ip)
 VALUES
-(?)");
+(?,?)"
+);
 
 
 $insertUsersStatement-> execute([
 
   $_POST["users"],
+  $_SERVER['REMOTE_ADDR']
   
 
 ]);
@@ -68,4 +70,4 @@ $insertMessagesStatement-> execute([
 ]);
 }
 
-header('Location: /../index.php?votre message a bien été edité.');
+header('Location: /../index.php');
