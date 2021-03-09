@@ -21,18 +21,18 @@ $verifpseudo=$insertStatement->fetch(PDO::FETCH_ASSOC);
 
     $insertMessage = $pdo->prepare(
       "INSERT INTO messages
-      (message,created_at,id)
-      VALUES (?,?;?)
+      (message,created_at,user_id)
+      VALUES (?,?,?)
     ");
      date_default_timezone_set('Europe/Paris');
      $datetime=date('Y-m-d H:i:s');
     $insertMessage-> execute([
-    $message,
-    $datetime,
-    $verifpseudo['id']
+        $message,
+        $datetime,
+        $verifpseudo['id']
      ]); 
 
-    }
+}
 
     else{
 
