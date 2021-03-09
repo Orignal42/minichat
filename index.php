@@ -7,7 +7,7 @@
   $selectStatement=  $pdo->prepare('SELECT users.*, messages.message, messages.created_at FROM users JOIN messages ON messages.user_id=users.id ');
   $selectStatement->execute(); 
   $usersList = $selectStatement->fetchAll();
-  var_dump($usersList);
+ 
 ?>
 
 
@@ -25,14 +25,14 @@
 <body>
 <?php if(isset($_GET["message"])) : ?>
    <div style="padding:10px;background:green;color:#fff;">
-   <?=    $_GET["message"]?>
+   <?=$_GET["message"]?>
    </div>          
      <?php endif ;?>  
     <section id="messages">
-    
+    <div class="message"
   <?php   
     foreach ( $usersList as $user){ ?>
-               <div>
+               <div class="message">
                <p><?= $user['created_at']?></p>
                <h1><?= $user['user']?></h1>
   
@@ -41,12 +41,27 @@
            </div>
 
   <?php  } ?>
+
+      <div>
+      <?php
+      foreach ( $usersList as $user){ ?>
+               <div class="utilisateur">
+              
+               <h1><?= $user['user']?></h1>
+  
+               <?php }  ?>
+           </div>
+         
+      
+      </div>
+
+      
         
 
     </section>
-    <form action="./php/insert.php" method="post">
-    
-          <div class="send">     
+ <!--   <form action="./php/insert.php" method="post">-->
+    <form action="./php/function.php" method="post">
+             <div class="send">     
         <p><label>User:<input type="text" name="users" required placeholder="users"></label></p>
         <p><label> Message:<input type="text" name="message" required placeholder="messages" >   </label></p>                 
  
