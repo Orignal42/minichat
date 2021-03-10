@@ -71,3 +71,4 @@ $insertMessagesStatement-> execute([
 }
 
 header('Location: /../index.php');
+

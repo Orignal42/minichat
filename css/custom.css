@@ -1,27 +1,30 @@
 body{
     background-color: aliceblue;
-}
 
-
-#messages{
-    display: flex;
-    flex-flow: row nowrap;
 }
-.message{
+#chat{
+
+    display:flex;
+    flex-flow: nowrap row;
+   
+    
+
+}
+.messages{
+
     width: 80%;
+    height: 20%;
+    background-color:white;
+    overflow-y: scroll;
+   
 }
 
 
 .utilisateur{
-    width: 20%;
+width: 10%;
 
 }
-
-
-
-.send{
-
+.each{
     display: flex;
-    flex-flow: row nowrap;
- 
+    flex-flow: nowrap row;
 }

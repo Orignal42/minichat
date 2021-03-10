@@ -3,9 +3,7 @@
 require_once(__DIR__."/pdo.php");
 
 
-$selectStatement=  $pdo->prepare('SELECT users.*, messages.message, messages.created_at FROM users JOIN messages ON messages.user_id=users.id ');
-$selectStatement->execute(); 
-$usersList = $selectStatement->fetchAll();
+
 
 ?>
 
@@ -22,42 +20,27 @@ $usersList = $selectStatement->fetchAll();
   <link href="./css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php if(isset($_GET["message"])) : ?>
- <div style="padding:10px;background:green;color:#fff;">
- <?=$_GET["message"]?>
- </div>          
-   <?php endif ;?>  
-  <section id="messages">
-  <div class="message"
-<?php   
-  foreach ( $usersList as $user){ ?>
-             <div class="message">
-             <p><?= $user['created_at']?></p>
-             <h1><?= $user['user']?></h1>
+   
+  <section id="chat">
+      <div class="messages">
+    <?php include "./automsg.php";  ?>
 
-             <h6><?= $user['message']?></h6>
+      </div>
 
-         </div>
 
-<?php  } ?>
-
-    <div>
-    <?php
-    foreach ( $usersList as $user){ ?>
-             <div class="utilisateur">
-            
-             <h3><?= $user['user']?></h3>
-          
-             <?php }  ?>
-             <p>Dernier connecté</p>
-             <?= $_COOKIE["useres"];
-                     ?>
+      <div class="utilisateur">  
+         <?php
+         
+         foreach ( $usersList as $user){ ?>
+                       
+                <h2><?= $user['user']?></h2>          
+                <?php }  ?>
+                <p>Dernier connecté</p>
+                    <?= $_COOKIE["useres"]; ?>
 
          </div>
        
     
-    </div>
-
     
       
 
@@ -71,7 +54,7 @@ $usersList = $selectStatement->fetchAll();
       <button>Envoyer message</button>
       </div>
   </form>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-  <script type="rafraichir.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="rafraichir.js"></script>
 </body>
 </html>
