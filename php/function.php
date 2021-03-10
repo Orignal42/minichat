@@ -21,7 +21,7 @@ $verifpseudo=$insertStatement->fetch(PDO::FETCH_ASSOC);
 
     $insertMessage = $pdo->prepare(
       "INSERT INTO messages
-      (message,created_at,user_id)
+      (message,created_at,id_users)
       VALUES (?,?,?)
     ");
      date_default_timezone_set('Europe/Paris');
@@ -57,7 +57,7 @@ $insertUsersStatement-> execute([
 $user_id = $pdo->lastInsertId();
 
 $insertMessagesStatement = $pdo->prepare(
-  "INSERT INTO messages (message, created_at, user_id)
+  "INSERT INTO messages (message, created_at, id_users)
   VALUES (?,?,?)
 ");
 date_default_timezone_set('Europe/Paris');
