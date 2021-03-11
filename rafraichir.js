@@ -2,8 +2,10 @@ function charger(){
  
    $.ajax({
     type:"POST",
-    url:'#messages',function(data){
-    $('#messages').html(data); 
+    url:'automsg.php', 
+    success:  function(data){
+            console.log(data);
+            $('.messages').html(data); 
         }
     
    });
@@ -15,13 +17,11 @@ $(document).ready(function(){
 });
 
 function messagers(){    
-    $.post('php/function.php',{            //recuperer les champs
-        users:$('#users').val(),            //
-        message:$('#messages').val()  
-        },function(){
-            
-            
-            document.querySelector('#messages').value='';  
-            charger()
+    $.post('php/function.php',{            
+        users:$('#users').val(),           
+        message:$('#message').val()  
+        },function(){          
+            document.querySelector('#message').value='';  
+            charger();
         })
     }

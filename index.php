@@ -22,7 +22,7 @@ require_once(__DIR__."/pdo.php");
 <body>
    
   <section id="chat">
-      <div class="messages"id="messages()">
+      <div class="messages" >
     <?php include "./automsg.php";  ?>
 
       </div>
@@ -33,7 +33,7 @@ require_once(__DIR__."/pdo.php");
          
          foreach ( $usersList as $user){ ?>
                        
-                <h2><?= $user['user']?></h2>          
+                <?= $user['user']?>         
                 <?php }  ?>
                 <p>Dernier connecté</p>
                     <?= $_COOKIE["useres"]; ?>
@@ -44,7 +44,7 @@ require_once(__DIR__."/pdo.php");
  <!--<form action="./php/function.php" method="post">-->
            <div class="send">     
       <p><label>User:<input type="text" name="users" required placeholder="users" id="users"></label></p>
-      <p><label> Message:<input type="text" name="message" required placeholder="messages"id="messages" >   </label></p>                 
+      <p><label> Message:<input type="text" name="message" required placeholder="messages"id="message" >   </label></p>                 
 
       <button onclick="messagers()" >Envoyer message</button>
       </div>
