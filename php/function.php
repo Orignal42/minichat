@@ -1,6 +1,11 @@
 <?php
   require_once(__DIR__."/pdo.php");
-  $user=$_POST["users"];
+
+  include 'RandomColor.php';
+use \Colors\RandomColor;
+$color = RandomColor::one(array('format'=>'hex'));
+
+$user=$_POST["users"];
 
 setcookie("useres",$user,time()+3600,"/");
 if (empty($_POST["message"])){
@@ -39,17 +44,17 @@ $verifpseudo=$insertStatement->fetch(PDO::FETCH_ASSOC);
 
         $insertUsersStatement = $pdo->prepare("
 INSERT INTO users
-(user,ip)
+(user,ip, color)
 VALUES
-(?,?)"
+(?,?,?)"
 );
 
 
 $insertUsersStatement-> execute([
 
   $_POST["users"],
-  $_SERVER['REMOTE_ADDR']
-  
+  $_SERVER['REMOTE_ADDR'],
+  $color
 
 ]);
 
