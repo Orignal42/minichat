@@ -39,21 +39,16 @@ require_once(__DIR__."/pdo.php");
                     <?= $_COOKIE["useres"]; ?>
 
          </div>
-       
-    
-    
-      
-
-  </section>
-<!--   <form action="./php/insert.php" method="post">-->
-  <form action="./php/function.php" method="post">
+        </section>
+<!--<form action="./php/insert.php" method="post">-->
+ <!--<form action="./php/function.php" method="post">-->
            <div class="send">     
       <p><label>User:<input type="text" name="users" required placeholder="users" id="users"></label></p>
       <p><label> Message:<input type="text" name="message" required placeholder="messages"id="messages" >   </label></p>                 
 
       <button onclick="messagers()" >Envoyer message</button>
       </div>
- </form>
+<!--  </form>-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="rafraichir.js"></script>
 </body>

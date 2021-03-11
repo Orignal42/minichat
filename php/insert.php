@@ -38,9 +38,5 @@ $insertMessagesStatement-> execute([
 
 
 
-
-
- header('Location: /../index.php?votre message a bien été edité.');
-
 ?>
 

@@ -5,14 +5,17 @@ $selectStatement=  $pdo->prepare(
    FROM users JOIN messages ON messages.id_users=users.id  ');
 $selectStatement->execute(); 
 $usersList = $selectStatement->fetchAll();
+?>
 
-
-
-  foreach ( $usersList as $user){ ?>
-  <div class="each">
-             <p>Date:<?=" ".$user['created_at']." "?></p>
-             <h1>Pseudo:<?=" ".$user['user']." "?></h1>
-             <h1>Dit:<?=" ".$user['message']." "?></h1>
-  </div>
+<?php
+  foreach ( $usersList as $user){ ?> 
+ <div class=tab>
+     
+     <div class="tablo"><?=$user['created_at']?></div>
+     <div class="tablo"><?=$user['user']?></div>
+     <div class="tablo"><?=$user['message']?></div>
+  
+     </div>
         
 <?php  } ?>
+  
