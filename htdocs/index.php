@@ -20,7 +20,7 @@ require_once(__DIR__."/pdo.php");
    
   <section id="chat">
       <div class="messages" >
-    <?php include "./automsg.php";  ?>
+    <?php include "automsg.php";?>
 
       </div>
 
@@ -30,22 +30,22 @@ require_once(__DIR__."/pdo.php");
          
          foreach ( $usersList as $user){ ?>
                        
-                <?= $user['user']?>         
+                <?= $user['user']?>  </br>       
                 <?php }  ?>
                 <p>Dernier connecté</p>
                     <?= $_COOKIE["useres"]; ?>
 
          </div>
         </section>
-<!--<form action="./php/insert.php" method="post">-->
- <!--<form action="./php/function.php" method="post">-->
+
+<!-- <form action="./php/function.php" method="post">-->
            <div class="send">     
       <p><label>User:<input type="text" name="users" required placeholder="users" id="users"></label></p>
       <p><label> Message:<input type="text" name="message" required placeholder="messages"id="message" >   </label></p>                 
 
       <button onclick="messagers()" >Envoyer message</button>
       </div>
-<!--  </form>-->
+<!--</form>-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="rafraichir.js"></script>
 </body>
